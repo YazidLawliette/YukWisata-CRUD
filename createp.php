@@ -2,22 +2,8 @@
 require 'connect.php';
 
 if( isset($_POST["submit"])){
-    insertPlace($_POST);
+    add($_POST, "place");
 }
-
-function insertPlace ($data) {
-    global $connect;
-        $name = $_POST['name'];
-        $location = $_POST['location'];
-        $price = $_POST['price'];
-
-        $query = "INSERT INTO place (name, location, price) VALUES ('$name', '$location', '$price')";
-        if (mysqli_query($connect, $query)) {
-            echo "<script>alert('Place added successfully'); document.location.href='index.php';</script>";
-        } else {
-            echo "<script>alert('Error adding place');</script>";
-        }
-    }
 
 
 ?>

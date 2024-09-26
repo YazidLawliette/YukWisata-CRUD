@@ -2,21 +2,7 @@
 require 'connect.php';
 
 if( isset($_POST["submit"])){
-    insertVisitor($_POST);
-}
-
-function insertVisitor($data) {
-    global $connect;
-        $name = $_POST['name'];
-        $contact = $_POST['contact'];
-        $amount = $_POST['amount'];
-
-        $query = "INSERT INTO visitor (name, contact, amount) VALUES ('$name', '$contact', '$amount')";
-        if (mysqli_query($connect, $query)) {
-            echo "<script>alert('Visitor added successfully'); document.location.href='index.php';</script>";
-        } else {
-            echo "<script>alert('Error adding visitor');</script>";
-        }
+    add($_POST, "visitor");
 }
 
 ?>

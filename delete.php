@@ -2,11 +2,12 @@
 
 require 'connect.php';
 
- $id = $_GET["id"];  
+$id = $_GET["id"];  
+$table = $_GET["table"]; 
 
-if( deleteVisitor($id) > 0 ){
+if( deleteAll($id, $table) > 0 ){
    echo "
-         <script> alert('Delete Succesed!');
+         <script> alert('Delete Succeeded!');
          document.location.href = 'index.php';
          </script>";
 }else{
@@ -15,14 +16,5 @@ if( deleteVisitor($id) > 0 ){
          document.location.href = 'index.php';
          </script>";
 }
-
-function deleteVisitor($id){
-   global $connect;
-   $query = "DELETE FROM visitor WHERE id = $id";
-   mysqli_query($connect, $query);
-   return mysqli_affected_rows($connect);
-}
-
-echo deleteVisitor($id);
 
 ?>

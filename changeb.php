@@ -3,12 +3,12 @@
 require 'connect.php';
 
 $id = $_GET["id"];
-$wisata = showData($id);
+$wisata = showData($id, "booking");
 
 if ( isset ($_POST["submit"])) {
     $data = $_POST;
     
-    if(change($data, $id) > 0 ) {
+    if(change($data, $id, "booking") > 0 ) {
         echo "<script>alert('data berhasil diubah!');
         document.location.href = 'index.php';</script>";
     } else {
@@ -16,37 +16,6 @@ if ( isset ($_POST["submit"])) {
         document.location.href = 'index.php';</script>";
     }
 }
-
-function showData($id) {
-    global $connect;
-    $query = "SELECT * FROM booking WHERE id = $id";
-    $result = mysqli_query($connect, $query);
-    $rows = [];
-
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
-    }   
-    return $rows;
-}
-
-function change($data, $id) {
-    global $connect;
-
-    $visitor = htmlspecialchars($data["visitor"]);
-    $tourist = htmlspecialchars($data["tourist"]);
-    $date = htmlspecialchars($data["date"]);
-
-    $query = "UPDATE booking SET
-              visitor = '$visitor',
-              tourist = '$tourist',
-              date = '$date'
-              WHERE id = $id";
-
-    mysqli_query($connect, $query);
-
-    return mysqli_affected_rows($connect);
-}
-
 
 
 ?>

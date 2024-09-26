@@ -2,22 +2,9 @@
 require 'connect.php';
 
 if( isset($_POST["submit"])){
-    insertBooking($_POST);
+    add($_POST, "booking");
 }
 
-function insertBooking($data) {
-    global $connect;
-        $visitor = $_POST['visitor'];
-        $tourist = $_POST['tourist'];
-        $date = $_POST['date'];
-
-        $query = "INSERT INTO booking (visitor, tourist, date) VALUES ('$visitor', '$tourist', '$date')";
-        if (mysqli_query($connect, $query)) {
-            echo "<script>alert('Booking added successfully'); document.location.href='index.php';</script>";
-        } else {
-            echo "<script>alert('Error adding booking');</script>";
-        }
-}
 ?>
 
 <!DOCTYPE html>

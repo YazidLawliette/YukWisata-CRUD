@@ -3,48 +3,18 @@
 require 'connect.php';
 
 $id = $_GET["id"];
-$wisata = showData($id);
+$wisata = showData($id, "place");
 
 if ( isset ($_POST["submit"])) {
     $data = $_POST;
     
-    if(change($data, $id) > 0 ) {
+    if(change($data, $id, "place") > 0 ) {
         echo "<script>alert('data berhasil diubah!');
         document.location.href = 'index.php';</script>";
     } else {
         echo "<script>alert('data gagal diubah!');
         document.location.href = 'index.php';</script>";
     }
-}
-
-function showData($id) {
-    global $connect;
-    $query = "SELECT * FROM place WHERE id = $id";
-    $result = mysqli_query($connect, $query);
-    $rows = [];
-
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
-    }   
-    return $rows;
-}
-
-function change($data, $id) {
-    global $connect;
-
-    $name = htmlspecialchars($data["name"]);
-    $location = htmlspecialchars($data["location"]);
-    $price = htmlspecialchars($data["price"]);
-
-    $query = "UPDATE place SET
-              name = '$name',
-              location = '$location',
-              price = '$price'
-              WHERE id = $id";
-
-    mysqli_query($connect, $query);
-
-    return mysqli_affected_rows($connect);
 }
 
 

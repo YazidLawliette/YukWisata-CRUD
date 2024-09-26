@@ -1,9 +1,9 @@
 <?php 
 
 require 'connect.php';
-$places = getData("SELECT * FROM place");
-$visited = getData("SELECT * FROM visitor");
-$bookings = getData("SELECT * FROM booking");
+$places = getTable("place");
+$visited = getTable("visitor");
+$bookings = getTable("booking");
 
 ?>
 <!DOCTYPE html>
@@ -109,7 +109,7 @@ $bookings = getData("SELECT * FROM booking");
                     <a class="text-white bg-blue-700 rounded-md hover:bg-blue-300 p-1 icon-button icon-pencil" href="changep.php?id=<?= $place["id"]?>">
                         <i class="ph ph-pencil"></i>
                     </a>
-                    <a class="text-white bg-red-700 rounded-md hover:bg-red-300 p-1 icon-button icon-trash" href="delete2.php?id=<?= $place["id"] ?>&table=place" onclick="return confirm('Want to Delete?');">
+                    <a class="text-white bg-red-700 rounded-md hover:bg-red-300 p-1 icon-button icon-trash" href="delete.php?id=<?= $place["id"] ?>&table=place" onclick="return confirm('Want to Delete?');">
                     <i class="ph ph-trash"></i>
                     </a>
                 </td>
@@ -140,7 +140,7 @@ $bookings = getData("SELECT * FROM booking");
                     <a class="text-white bg-blue-700 rounded-md hover:bg-blue-300 p-1 icon-button icon-pencil" href="changeb.php?id=<?= $booking["id"]?>">
                         <i class="ph ph-pencil"></i>
                     </a>
-                    <a class="text-white bg-red-700 rounded-md hover:bg-red-300 p-1 icon-button icon-trash" href="delete3.php?id=<?= $booking["id"] ?>&table=booking" onclick="return confirm('Want to Delete?');">
+                    <a class="text-white bg-red-700 rounded-md hover:bg-red-300 p-1 icon-button icon-trash" href="delete.php?id=<?= $booking["id"] ?>&table=booking" onclick="return confirm('Want to Delete?');">
                     <i class="ph ph-trash"></i>
                     </a>
                 </td>
